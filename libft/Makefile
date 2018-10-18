@@ -6,7 +6,7 @@
 #    By: fhong <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/02 10:18:57 by fhong             #+#    #+#              #
-#    Updated: 2018/10/17 14:40:28 by fhong            ###   ########.fr        #
+#    Updated: 2018/10/18 10:22:58 by fuhong           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ STR			:=	ft_strcat ft_strcmp ft_strdup ft_striteri ft_strlen ft_strncat			\
 				ft_strlcat ft_strmapi ft_strncpy ft_strnlen ft_strrev ft_strsub			\
 				ft_toupper
 
-OTHER		:=	ft_exit
+OTHER		:=	ft_exit ft_tablefree
 
 GNL			:=	get_next_line
 

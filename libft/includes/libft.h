@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 08:35:54 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/17 14:39:38 by fhong            ###   ########.fr       */
+/*   Updated: 2018/10/18 10:22:24 by fuhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,5 +170,6 @@ void				ft_putnbr_uintmax_t_base(uintmax_t value, char *base);
 */
 
 void				ft_exit(char *str);
+void				ft_tablefree(char **table);
 
 #endif
