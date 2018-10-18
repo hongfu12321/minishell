@@ -5,11 +5,12 @@ NAME		= minishell
 CFLAGS		= -Wall -Wextra -Werror
 MEMORY		= -g
 LIBFT 		= libft/libft.a
-HEADER		= -I libft/includes\
+HEADER		= -I libft/includes	\
 			  -I include
 FUNCTIONS	= minishell.c
 
-MY_FUNC		= ft_my_exit.c
+MY_FUNC		= ft_my_exit.c		\
+			  ft_my_echo.c
 
 FILES		= $(addprefix src/, $(FUNCTIONS))\
 			  $(addprefix src/my_function/, $(MY_FUNC))

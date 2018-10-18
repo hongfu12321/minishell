@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/17 14:24:07 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/17 20:53:44 by fuhong           ###   ########.fr       */
+/*   Updated: 2018/10/18 12:50:04 by fuhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_cmd_dispatch	g_my_func[FUNC_NUM];
 
 //_Bool			ft_my_cd(char **para, char **envp);
 _Bool			ft_my_exit(char **para, char **envp);
-//_Bool			ft_my_echo(char **para, char **envp);
+_Bool			ft_my_echo(char **para, char **envp);
 //_Bool			ft_my_env(char **para, char **envp);
 //_Bool			ft_my_setenv(char **para, char **envp);
 //_Bool			ft_my_unsetsev(char **para, char **envp);

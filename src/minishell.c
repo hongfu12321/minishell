@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/17 15:01:58 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/18 00:15:45 by fuhong           ###   ########.fr       */
+/*   Updated: 2018/10/18 12:50:27 by fuhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 t_cmd_dispatch	g_my_func[FUNC_NUM] = 
 {
-	{"exit", NULL, &ft_my_exit}
+	{"exit", NULL, &ft_my_exit},
 	//	{"cd", NULL, &ft_my_cd},
-	//	{"echo", "n", &ft_my_echo},
+	{"echo", "n", &ft_my_echo}
 	//	{"env", "iPSuv", &ft_my_env},
 	//	{"setenv", NULL, &ft_my_setenv},
 	//	{"unsetenv", NULL, &ft_my_unsetenv},
@@ -27,7 +27,7 @@ int				is_my_func(char **cmd)
 	int ret;
 
 	ret = -1;
-	while (++ret < 1)
+	while (++ret < 2)
 		if (ft_strcmp(cmd[0], g_my_func[ret].name) == 0)
 			return (ret);
 	return (-1);
@@ -121,7 +121,8 @@ int				main(int ac, char **av, char *envp[])
 			pid = fork();
 			run_cmd(pid, cmd, newenv);
 			ft_strdel(&line);
-			//free(cmd);
+			ft_tablefree(cmd);
 		}
+		ft_strdel(&line);
 	}
 }
