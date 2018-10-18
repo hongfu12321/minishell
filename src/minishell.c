@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/17 15:01:58 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/17 23:36:37 by fuhong           ###   ########.fr       */
+/*   Updated: 2018/10/18 00:15:45 by fuhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ _Bool			run_system_func(char **cmd, char**envp)
 	char	*name;
 	_Bool	result;
 
+	result = 0;
 	path_table = get_path(envp);
 	name = ft_strjoin("/", cmd[0]);
 	i = 0;
@@ -68,11 +69,11 @@ _Bool			run_system_func(char **cmd, char**envp)
 			path = cmd[0];
 		else
 			path = ft_strjoin(path_table[i], name);
-		result = execve(path, cmd, envp);
+		result = (execve(path, cmd, envp) == -1) ? 0 : 1;
 		ft_strdel(&path);
 	}
-	ft_strdel(&name);
-	free(path_table);
+	//ft_strdel(&name);
+	//free(path_table);
 	return (result);
 }
 
@@ -83,6 +84,7 @@ void			run_cmd(pid_t pid, char **cmd, char **envp)
 	_Bool	result;
 
 	ret = -1;
+	result = 0;
 	if (pid == 0)
 	{
 		if ((ret = is_my_func(cmd)) != -1)
@@ -92,12 +94,11 @@ void			run_cmd(pid_t pid, char **cmd, char **envp)
 	}
 	else if (pid < 0)
 		ft_exit("Fail to create new process");
-	else
-	{
-		waitpid(pid, &stat_loc, WUNTRACED);
-		if (!ft_strcmp(cmd[0], "exit"))
-			ft_exit("\033[1m\033[33mHave a good day~\033[0m\n");
-	}
+	waitpid(pid, &stat_loc, WUNTRACED);
+	if (pid == 0 && result == 0)
+		exit(0);
+	if (pid > 0 && !ft_strcmp(cmd[0], "exit"))
+		ft_exit("\033[1m\033[33mHave a good day~\033[0m\n");
 }
 
 int				main(int ac, char **av, char *envp[])
@@ -114,10 +115,13 @@ int				main(int ac, char **av, char *envp[])
 	{
 		ft_putstr(SHELLNAME);
 		get_next_line(0, &line);
-		cmd = ft_strsplit(line, ' ');
-		pid = fork();
-		run_cmd(pid, cmd, newenv);
-		ft_strdel(&line);
-		free(cmd);
+		if (*line)
+		{
+			cmd = ft_strsplit(line, ' ');
+			pid = fork();
+			run_cmd(pid, cmd, newenv);
+			ft_strdel(&line);
+			//free(cmd);
+		}
 	}
 }
