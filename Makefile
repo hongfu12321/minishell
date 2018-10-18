@@ -7,9 +7,12 @@ MEMORY		= -g
 LIBFT 		= libft/libft.a
 HEADER		= -I libft/includes\
 			  -I include
-FUNCTIONS	= minishell.c\
+FUNCTIONS	= minishell.c
 
-FILES		= $(addprefix src/, $(FUNCTIONS))
+MY_FUNC		= ft_my_exit.c
+
+FILES		= $(addprefix src/, $(FUNCTIONS))\
+			  $(addprefix src/my_function/, $(MY_FUNC))
 
 OBJECTS		= $(FILES:.c=.o)
 
@@ -20,6 +23,7 @@ all: $(NAME)
 $(OBJECTS): $(FILES)
 	@$(CC) $(CFLAGS) $(MEMORY) -c $(FILES) $(HEADER)
 	@mv $(FUNCTIONS:.c=.o) src/
+	@mv $(MY_FUNC:.c=.o) src/my_function/
 
 libft: $(LIBFT)
 
