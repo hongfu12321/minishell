@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/17 15:01:58 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/18 12:50:27 by fuhong           ###   ########.fr       */
+/*   Updated: 2018/10/18 14:13:34 by fuhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,37 +76,67 @@ _Bool			run_system_func(char **cmd, char**envp)
 	//free(path_table);
 	return (result);
 }
+/*
+   void			run_cmd(pid_t pid, char **cmd, char **envp)
+   {
+   int		ret;
+   int		stat_loc;
+   _Bool	result;
 
-void			run_cmd(pid_t pid, char **cmd, char **envp)
+   ret = -1;
+   result = 0;
+   if (pid == 0)
+   {
+   if ((ret = is_my_func(cmd)) != -1)
+   result = g_my_func[ret].fct(cmd, envp);
+   else
+   result = run_system_func(cmd, envp);
+   }
+   else if (pid < 0)
+   ft_exit("Fail to create new process");
+   waitpid(pid, &stat_loc, WUNTRACED);
+   if (pid == 0 && result == 0)
+   exit(0);
+   if (pid > 0 && !ft_strcmp(cmd[0], "exit"))
+   ft_exit("\033[1m\033[33mHave a good day~\033[0m\n");
+   }*/
+
+void			run_cmd(char *cmd, char **envp)
 {
 	int		ret;
 	int		stat_loc;
 	_Bool	result;
+	char	**parse;
+	pid_t	pid;
 
 	ret = -1;
 	result = 0;
-	if (pid == 0)
+	parse = ft_strsplit(cmd, ' ');
+	if (*parse == NULL)
+		return ;
+	if ((ret = is_my_func(parse)) != -1)
+		result = g_my_func[ret].fct(parse, envp);
+	else
 	{
-		if ((ret = is_my_func(cmd)) != -1)
-			result = g_my_func[ret].fct(cmd, envp);
-		else
-			result = run_system_func(cmd, envp);
+		pid = fork();
+		if (pid == 0)
+		{
+			result = run_system_func(parse, envp);
+			exit(0);
+		}
+		else if (pid < 0)
+			ft_exit("Fail to create new process");
+		waitpid(pid, &stat_loc, WUNTRACED);
 	}
-	else if (pid < 0)
-		ft_exit("Fail to create new process");
-	waitpid(pid, &stat_loc, WUNTRACED);
-	if (pid == 0 && result == 0)
-		exit(0);
-	if (pid > 0 && !ft_strcmp(cmd[0], "exit"))
-		ft_exit("\033[1m\033[33mHave a good day~\033[0m\n");
+	ft_tablefree(parse);
 }
 
 int				main(int ac, char **av, char *envp[])
 {
+	int		i;
 	char	*line;
 	char	**cmd;
 	char	**newenv;
-	pid_t	pid;
 
 	newenv = envp;
 	if (ac != 1 && av[0])
@@ -117,9 +147,10 @@ int				main(int ac, char **av, char *envp[])
 		get_next_line(0, &line);
 		if (*line)
 		{
-			cmd = ft_strsplit(line, ' ');
-			pid = fork();
-			run_cmd(pid, cmd, newenv);
+			cmd = ft_strsplit(line, ';');
+			i = -1;
+			while (cmd[++i])
+				run_cmd(cmd[i], newenv);
 			ft_strdel(&line);
 			ft_tablefree(cmd);
 		}
