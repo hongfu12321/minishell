@@ -6,13 +6,13 @@
 /*   By: fuhong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 07:43:45 by fuhong            #+#    #+#             */
-/*   Updated: 2018/10/18 11:15:55 by fuhong           ###   ########.fr       */
+/*   Updated: 2018/10/19 04:32:27 by fuhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-_Bool	ft_my_echo(char **para, char **envp)
+_Bool	ft_my_echo(char **para, t_minienv *envp)
 {
 	int 	i;
 	_Bool	flag;

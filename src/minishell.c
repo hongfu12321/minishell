@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/17 15:01:58 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/18 22:55:20 by fuhong           ###   ########.fr       */
+/*   Updated: 2018/10/19 04:59:08 by fuhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,39 @@ t_cmd_dispatch	g_my_func[FUNC_NUM] =
 	{"unsetenv", NULL, NULL}
 };
 
+t_minienv		*init_env(char **envp)
+{
+	int 		len;
+	t_minienv	*new_env;
+
+	len = 0;
+	while (envp[len])
+		len++;
+	if (!(new_env = (t_minienv *)malloc(sizeof(t_minienv))))
+		ft_exit("Initial env fuck up\n");
+	new_env->env = (char **)malloc(sizeof(char *) * (len + 1));
+	new_env->env[len] = NULL;
+	while (envp[--len])
+		new_env->env[len] = ft_strdup(envp[len]);
+	return (new_env);
+}
+
+void			free_env(t_minienv *envp)
+{
+	ft_tablefree(envp->env);
+	free(envp);
+}
+
 int				main(int ac, char **av, char **envp)
 {
-	int		i;
-	char	*line;
-	char	**cmd;
+	int			i;
+	char		*line;
+	char		**cmd;
+	t_minienv	*mini_env;
 
 	if (ac != 1 && av[0])
 		ft_exit (NULL);
-	envp = create_env(envp, NULL, CREATE_ENV);
+	mini_env = init_env(envp);
 	while(42)
 	{
 		ft_putstr(SHELLNAME);
@@ -39,12 +63,13 @@ int				main(int ac, char **av, char **envp)
 		{
 			cmd = ft_strsplit(line, ';');
 			i = -1;
+			envp = mini_env->env;
 			while (cmd[++i])
-				run_cmd(cmd[i], envp);
+				run_cmd(cmd[i], mini_env);
 			ft_strdel(&line);
 			ft_tablefree(cmd);
 		}
 		ft_strdel(&line);
 	}
-	ft_tablefree(envp);
+	free_env(mini_env);
 }

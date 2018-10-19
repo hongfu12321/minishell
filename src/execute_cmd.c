@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 15:08:38 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/18 21:54:59 by fuhong           ###   ########.fr       */
+/*   Updated: 2018/10/19 05:54:38 by fuhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int				is_my_func(char **cmd)
 	return (-1);
 }
 
-_Bool			run_system_func(char **cmd, char**envp)
+_Bool			run_system_func(char **cmd, t_minienv *envp)
 {
 	int		i;
 	char	**path_table;
@@ -32,7 +32,8 @@ _Bool			run_system_func(char **cmd, char**envp)
 	_Bool	result;
 
 	result = 0;
-	path_table = ft_strsplit(get_env_var(envp, "PATH"), ':');
+	if (!(path_table = ft_strsplit(get_env_var(envp->env, "PATH"), ':')))
+		ft_exit("Can't find the path\n");
 	name = ft_strjoin("/", cmd[0]);
 	i = 0;
 	while (path_table[i++])
@@ -41,7 +42,7 @@ _Bool			run_system_func(char **cmd, char**envp)
 			path = cmd[0];
 		else
 			path = ft_strjoin(path_table[i], name);
-		result = (execve(path, cmd, envp) == -1) ? 0 : 1;
+		result = (execve(path, cmd, envp->env) == -1) ? 0 : 1;
 		ft_strdel(&path);
 	}
 	ft_putstr("Command not found\n");
@@ -49,7 +50,20 @@ _Bool			run_system_func(char **cmd, char**envp)
 	return (result);
 }
 
-void			run_cmd(char *cmd, char **envp)
+_Bool			run_builtin_func(char *cmd, t_minienv *envp, char **p, int ret)
+{
+	_Bool result;
+
+	if (ft_strncmp(cmd, "setenv", 6) == 0)
+		result = ft_my_setenv(p, envp);
+	else if (ft_strncmp(cmd, "unsetenv", 8) == 0)
+		result = ft_my_unsetenv(p, envp);
+	else
+		result = g_my_func[ret].fct(p, envp);
+	return (result);
+}
+
+void			run_cmd(char *cmd, t_minienv *envp)
 {
 	int		ret;
 	int		stat_loc;
@@ -63,15 +77,7 @@ void			run_cmd(char *cmd, char **envp)
 	if (*parse == NULL)
 		return (ft_tablefree(parse));
 	if ((ret = is_my_func(parse)) != -1)
-	{
-		if (ft_strncmp(cmd, "setenv", 6) == 0)
-			envp = ft_my_setenv(parse, envp);
-		else if (ft_strncmp(cmd, "unsetenv", 8) == 0)
-			;
-			//envp = ft_my_unsetenv(envp, cmd);
-		else
-			result = g_my_func[ret].fct(parse, envp);
-	}
+		result = run_builtin_func(cmd, envp, parse, ret);
 	else
 	{
 		pid = fork();

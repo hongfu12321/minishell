@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/17 14:24:07 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/18 22:48:46 by fuhong           ###   ########.fr       */
+/*   Updated: 2018/10/19 05:14:55 by fuhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,12 @@
 # define		SET_ENV		0
 # define		CREATE_ENV	1
 
-typedef _Bool	(*myfunc)(char **para, char **envp);
+typedef struct	s_minienv
+{
+	char		**env;
+}				t_minienv;
+
+typedef _Bool	(*myfunc)(char **para, t_minienv *envp);
 
 typedef struct	s_cmd_dispatch
 {
@@ -43,12 +48,12 @@ t_cmd_dispatch	g_my_func[FUNC_NUM];
 ** my_function
 */
 
-_Bool			ft_my_exit(char **para, char **envp);
-_Bool			ft_my_cd(char **para, char **envp);
-_Bool			ft_my_echo(char **para, char **envp);
-_Bool			ft_my_env(char **para, char **envp);
-char			**ft_my_setenv(char **parse, char **envp);
-//char			**ft_my_unsetsev(char **para, char **envp);
+_Bool			ft_my_exit(char **para, t_minienv *envp);
+_Bool			ft_my_cd(char **para, t_minienv *envp);
+_Bool			ft_my_echo(char **para, t_minienv *envp);
+_Bool			ft_my_env(char **para, t_minienv *envp);
+_Bool			ft_my_setenv(char **parse, t_minienv *envp);
+_Bool			ft_my_unsetenv(char **parse, t_minienv *envp);
 
 /*
 ** execute_cmd
@@ -56,8 +61,8 @@ char			**ft_my_setenv(char **parse, char **envp);
 
 int				is_my_func(char **cmd);
 char			**get_path(char **envp);
-_Bool			run_system_func(char **cmd, char**envp);
-void			run_cmd(char *cmd, char **envp);
+_Bool			run_system_func(char **cmd, t_minienv *envp);
+void			run_cmd(char *cmd, t_minienv *envp);
 
 /*
 ** handle_env.c

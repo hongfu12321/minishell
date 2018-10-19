@@ -15,7 +15,8 @@ MY_FUNC		= ft_my_exit.c		\
 			  ft_my_echo.c		\
 			  ft_my_env.c		\
 			  ft_my_cd.c		\
-			  ft_my_setenv.c
+			  ft_my_setenv.c	\
+			  ft_my_unsetenv.c
 
 FILES		= $(addprefix src/, $(FUNCTIONS))\
 			  $(addprefix src/my_function/, $(MY_FUNC))

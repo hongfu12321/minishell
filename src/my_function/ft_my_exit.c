@@ -6,13 +6,13 @@
 /*   By: fuhong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/17 20:40:55 by fuhong            #+#    #+#             */
-/*   Updated: 2018/10/18 14:53:33 by fhong            ###   ########.fr       */
+/*   Updated: 2018/10/19 04:32:55 by fuhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-_Bool	ft_my_exit(char **para, char **envp)
+_Bool	ft_my_exit(char **para, t_minienv *envp)
 {
 	(void)envp;
 	(void)para;
