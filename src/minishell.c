@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/17 15:01:58 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/19 04:59:08 by fuhong           ###   ########.fr       */
+/*   Updated: 2018/10/19 12:43:14 by fuhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int				main(int ac, char **av, char **envp)
 	if (ac != 1 && av[0])
 		ft_exit (NULL);
 	mini_env = init_env(envp);
+	ft_putstr("\033[1m\033[92mWelcome!\033[0m Make great code today\n");
 	while(42)
 	{
 		ft_putstr(SHELLNAME);
