@@ -7,10 +7,14 @@ MEMORY		= -g
 LIBFT 		= libft/libft.a
 HEADER		= -I libft/includes	\
 			  -I include
-FUNCTIONS	= minishell.c
+FUNCTIONS	= minishell.c		\
+			  execute_cmd.c		\
+			  parse_cmd.c
 
 MY_FUNC		= ft_my_exit.c		\
-			  ft_my_echo.c
+			  ft_my_echo.c		\
+			  ft_my_env.c		\
+			  ft_my_cd.c
 
 FILES		= $(addprefix src/, $(FUNCTIONS))\
 			  $(addprefix src/my_function/, $(MY_FUNC))
