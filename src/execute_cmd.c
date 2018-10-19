@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 15:08:38 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/18 17:45:28 by fhong            ###   ########.fr       */
+/*   Updated: 2018/10/18 21:54:59 by fuhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,10 @@ int				is_my_func(char **cmd)
 	int ret;
 
 	ret = -1;
-	while (++ret < 4)
+	while (++ret < FUNC_NUM)
 		if (ft_strcmp(cmd[0], g_my_func[ret].name) == 0)
 			return (ret);
 	return (-1);
-}
-
-char			**get_path(char **envp)
-{
-	int		i;
-	char	**path;
-
-	i = -1;
-	path = NULL;
-	while (envp[++i])
-	{
-		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
-		{
-			path = ft_strsplit(&envp[i][5], ':');
-			break ;
-		}
-	}
-	return (path);
 }
 
 _Bool			run_system_func(char **cmd, char**envp)
@@ -81,7 +63,15 @@ void			run_cmd(char *cmd, char **envp)
 	if (*parse == NULL)
 		return (ft_tablefree(parse));
 	if ((ret = is_my_func(parse)) != -1)
-		result = g_my_func[ret].fct(parse, envp);
+	{
+		if (ft_strncmp(cmd, "setenv", 6) == 0)
+			envp = ft_my_setenv(parse, envp);
+		else if (ft_strncmp(cmd, "unsetenv", 8) == 0)
+			;
+			//envp = ft_my_unsetenv(envp, cmd);
+		else
+			result = g_my_func[ret].fct(parse, envp);
+	}
 	else
 	{
 		pid = fork();

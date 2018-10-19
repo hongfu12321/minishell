@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 15:15:27 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/18 17:26:47 by fhong            ###   ########.fr       */
+/*   Updated: 2018/10/18 20:33:40 by fuhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ _Bool	ft_my_cd(char **para, char **envp)
 	else
 		path = get_env_var(envp, "HOME");
 	if (access(path, F_OK) == -1)
-		ft_putstr("cd: no such file or directory\n");
+		ft_putstr("cd: no such directory\n");
 	else if (access(path, R_OK) == -1)
 		ft_putstr("cd: permission denied\n");
 	else

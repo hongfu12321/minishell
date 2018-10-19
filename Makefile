@@ -2,19 +2,20 @@
 CC			= gcc
 RM			= rm -rf
 NAME		= minishell
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -fsanitize=address -Wall -Wextra -Werror
 MEMORY		= -g
 LIBFT 		= libft/libft.a
 HEADER		= -I libft/includes	\
 			  -I include
 FUNCTIONS	= minishell.c		\
 			  execute_cmd.c		\
-			  parse_cmd.c
+			  handle_env.c
 
 MY_FUNC		= ft_my_exit.c		\
 			  ft_my_echo.c		\
 			  ft_my_env.c		\
-			  ft_my_cd.c
+			  ft_my_cd.c		\
+			  ft_my_setenv.c
 
 FILES		= $(addprefix src/, $(FUNCTIONS))\
 			  $(addprefix src/my_function/, $(MY_FUNC))
