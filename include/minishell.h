@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/17 14:24:07 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/19 05:14:55 by fuhong           ###   ########.fr       */
+/*   Updated: 2018/10/19 06:21:12 by fuhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,11 @@ void			run_cmd(char *cmd, t_minienv *envp);
 
 int				search_env_index(char **envp, char *str);
 char			*get_env_var(char **envp, char *str);
-char			**create_env(char **envp, char *para, int flag);
+
+/*
+** parse_cmd.c
+*/
+
+char			**parse_cmd(char **envo, char *sr);
 
 #endif

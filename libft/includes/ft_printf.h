@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 23:00:59 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/17 16:47:34 by fhong            ###   ########.fr       */
+/*   Updated: 2018/10/19 06:55:15 by fuhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
-# include <stdio.h>
+# include <limits.h>
 # include "libft.h"
 
 #define RESET		"\033[0m"

@@ -9,6 +9,7 @@ HEADER		= -I libft/includes	\
 			  -I include
 FUNCTIONS	= minishell.c		\
 			  execute_cmd.c		\
+			  parse_cmd.c		\
 			  handle_env.c
 
 MY_FUNC		= ft_my_exit.c		\

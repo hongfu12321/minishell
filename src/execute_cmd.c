@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 15:08:38 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/19 05:54:38 by fuhong           ###   ########.fr       */
+/*   Updated: 2018/10/19 06:21:44 by fuhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,8 @@ void			run_cmd(char *cmd, t_minienv *envp)
 
 	ret = -1;
 	result = 0;
-	parse = ft_strsplit(cmd, ' ');
-	if (*parse == NULL)
-		return (ft_tablefree(parse));
+	if ((parse = parse_cmd(envp->env, cmd)) == NULL)
+		return ;
 	if ((ret = is_my_func(parse)) != -1)
 		result = run_builtin_func(cmd, envp, parse, ret);
 	else

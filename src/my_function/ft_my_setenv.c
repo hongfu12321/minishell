@@ -6,7 +6,7 @@
 /*   By: fuhong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 21:21:32 by fuhong            #+#    #+#             */
-/*   Updated: 2018/10/19 05:12:39 by fuhong           ###   ########.fr       */
+/*   Updated: 2018/10/19 07:35:40 by fuhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ _Bool	ft_my_setenv(char **parse, t_minienv *envp)
 		if ((index = search_env_index(envp->env, parse[1])) != -1)
 		{
 			tmp_var = envp->env[index];
-		ft_printf("%s|%d\n", tmp_var, index);
 			envp->env[index] = new_var;
 			ft_strdel(&tmp_var);
 		}
 		else
 			envp->env = set_env(tmp_envp, new_var);
+		return (1);
 	}
-	return (1);
+	return (0);
 }
