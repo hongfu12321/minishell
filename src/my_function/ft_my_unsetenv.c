@@ -6,7 +6,7 @@
 /*   By: fuhong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/19 05:15:08 by fuhong            #+#    #+#             */
-/*   Updated: 2018/10/19 05:35:28 by fuhong           ###   ########.fr       */
+/*   Updated: 2018/10/19 13:38:39 by fuhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ _Bool	ft_my_unsetenv(char **parse, t_minienv *envp)
 	int		index;
 	char	**new_envp;
 
+	if (!parse[1])
+		return (0);
 	if ((index = search_env_index(envp->env, parse[1])) != -1)
 	{
 		len = 0;

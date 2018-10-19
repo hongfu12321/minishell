@@ -6,7 +6,7 @@
 /*   By: fuhong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 21:21:32 by fuhong            #+#    #+#             */
-/*   Updated: 2018/10/19 07:35:40 by fuhong           ###   ########.fr       */
+/*   Updated: 2018/10/19 14:02:33 by fuhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,11 @@ _Bool	ft_my_setenv(char **parse, t_minienv *envp)
 	{
 		new_var = ft_strjoin(parse[1], "=");
 		if (parse[2] && parse[2] != NULL)
+		{
+			tmp_var = new_var;
 			new_var = ft_strjoin(new_var, parse[2]);
+			ft_strdel(&tmp_var);
+		}
 		if ((index = search_env_index(envp->env, parse[1])) != -1)
 		{
 			tmp_var = envp->env[index];

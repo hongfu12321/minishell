@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 17:27:43 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/19 07:47:15 by fuhong           ###   ########.fr       */
+/*   Updated: 2018/10/19 14:25:01 by fuhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,27 @@
 
 char	*parse_special_char(char *str, char **envp, char c)
 {
+/*	char *new;
 	char *tmp;
 
-	tmp = str;
-	if (c == '$' && ((tmp = get_env_var(envp, &str[1])) == NULL))
+	if (!str[1] && str[0] != '~')
 		return (str);
-	else if (c == '~')
+	if (c == '$' && !(new = get_env_var(envp, &str[1])))
+		return (str);
+	if (c == '~')
 	{
-		tmp = get_env_var(envp, "HOME");
+		new = get_env_var(envp, "HOME");
 		if (str[1] != '\0')
-			tmp = ft_strjoin(tmp, &str[1]);
+		{
+			tmp = new;
+			new = ft_strjoin(tmp, &str[1]);
+			ft_strdel(&tmp);
+		}
 	}
-	return (tmp);
+	return (new);*/
+	(void)envp;
+	(void)c;
+	return (ft_strdup(str));
 }
 
 char	**parse_cmd(char **envp, char *str)
@@ -48,12 +57,16 @@ char	**parse_cmd(char **envp, char *str)
 		if (parse[i][0] == '\'' && parse[i][len - 1] == '\'')
 		{
 			parse[i] = ft_strsub(parse[i], 1, len - 2);
+			ft_strdel(&tmp);
 			continue ;
 		}
 		if (parse[i][0] == '~' || parse[i][0] == '$')
 			parse[i] = parse_special_char(parse[i], envp, parse[i][0]);
 		if (ft_strcmp(parse[i], tmp) != 0)
-			free(tmp);
+		{
+			ft_putstr("INNNN\n");
+//			ft_strdel(&tmp);
+		}
 	}
 	return (parse);
 }
