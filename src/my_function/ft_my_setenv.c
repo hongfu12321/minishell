@@ -6,7 +6,7 @@
 /*   By: fuhong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 21:21:32 by fuhong            #+#    #+#             */
-/*   Updated: 2018/10/19 14:02:33 by fuhong           ###   ########.fr       */
+/*   Updated: 2018/10/19 15:07:27 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	**set_env(char **envp, char *new_var)
 	{
 		if (i == (len - 1))
 		{
-			new_envp[i] = ft_strdup(new_var);
+			new_envp[i] = new_var;
 			new_envp[i + 1] = ft_strdup(envp[i]);
 			break ;
 		}

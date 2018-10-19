@@ -2,7 +2,7 @@
 CC			= gcc
 RM			= rm -rf
 NAME		= minishell
-CFLAGS		= -Wall -Wextra -Werror #-fsanitize=address -g
+CFLAGS		= -Wall -Wextra -Werror # -fsanitize=address 
 MEMORY		= -g
 LIBFT 		= libft/libft.a
 HEADER		= -I libft/includes	\

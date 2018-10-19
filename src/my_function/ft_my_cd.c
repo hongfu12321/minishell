@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 15:15:27 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/19 07:41:01 by fuhong           ###   ########.fr       */
+/*   Updated: 2018/10/19 15:33:03 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ _Bool	ft_my_cd(char **para, t_minienv *envp)
 	char	buff[PATH_MAX + 1];
 
 	flag = 0;
-	if (para[1][0] == '-')
+	if (para[1] && para[1][0] == '-')
 		path = get_env_var(envp->env, "OLDPWD");
 	else
 		path = (para[1]) ? ft_strdup(para[1]) : get_env_var(envp->env, "HOME");

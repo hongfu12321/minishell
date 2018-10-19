@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/17 15:01:58 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/19 12:43:14 by fuhong           ###   ########.fr       */
+/*   Updated: 2018/10/19 16:07:21 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_minienv		*init_env(char **envp)
 void			free_env(t_minienv *envp)
 {
 	ft_tablefree(envp->env);
-	free(envp);
+	free(&envp);
 }
 
 int				main(int ac, char **av, char **envp)

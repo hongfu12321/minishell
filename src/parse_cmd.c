@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 17:27:43 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/19 14:25:01 by fuhong           ###   ########.fr       */
+/*   Updated: 2018/10/19 15:15:24 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*parse_special_char(char *str, char **envp, char c)
 {
-/*	char *new;
+	char *new;
 	char *tmp;
 
 	if (!str[1] && str[0] != '~')
@@ -31,10 +31,11 @@ char	*parse_special_char(char *str, char **envp, char c)
 			ft_strdel(&tmp);
 		}
 	}
-	return (new);*/
-	(void)envp;
-	(void)c;
-	return (ft_strdup(str));
+//	ft_printf("new = %s\n", new);
+	return (new);
+//	(void)envp;
+//	(void)c;
+//	return (ft_strdup(str));
 }
 
 char	**parse_cmd(char **envp, char *str)
@@ -63,10 +64,7 @@ char	**parse_cmd(char **envp, char *str)
 		if (parse[i][0] == '~' || parse[i][0] == '$')
 			parse[i] = parse_special_char(parse[i], envp, parse[i][0]);
 		if (ft_strcmp(parse[i], tmp) != 0)
-		{
-			ft_putstr("INNNN\n");
-//			ft_strdel(&tmp);
-		}
+			ft_strdel(&tmp);
 	}
 	return (parse);
 }
