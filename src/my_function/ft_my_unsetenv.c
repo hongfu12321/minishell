@@ -6,7 +6,7 @@
 /*   By: fuhong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/19 05:15:08 by fuhong            #+#    #+#             */
-/*   Updated: 2018/10/19 15:25:50 by fhong            ###   ########.fr       */
+/*   Updated: 2018/10/19 16:36:09 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,17 @@
 
 _Bool	ft_my_unsetenv(char **parse, t_minienv *envp)
 {
-	int 	i;
+	int		i;
 	int		len;
 	int		index;
 	char	**new_envp;
 
-	if (!parse[1])
-		return (0);
-	if ((index = search_env_index(envp->env, parse[1])) != -1)
+	if (parse[1] && (index = search_env_index(envp->env, parse[1])) != -1)
 	{
 		len = 0;
 		while (envp->env[len])
 			len++;
-		new_envp = (char **)malloc(sizeof(char *) * len);
-		new_envp[--len] = NULL;
+		new_envp = (char **)ft_memalloc(sizeof(char *) * len);
 		i = 0;
 		len = 0;
 		while (envp->env[len])

@@ -6,13 +6,13 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/17 15:01:58 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/19 16:07:21 by fhong            ###   ########.fr       */
+/*   Updated: 2018/10/19 16:20:52 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_cmd_dispatch	g_my_func[FUNC_NUM] = 
+t_cmd_dispatch	g_my_func[FUNC_NUM] =
 {
 	{"exit", NULL, &ft_my_exit},
 	{"cd", NULL, &ft_my_cd},
@@ -24,8 +24,8 @@ t_cmd_dispatch	g_my_func[FUNC_NUM] =
 
 t_minienv		*init_env(char **envp)
 {
-	int 		len;
 	t_minienv	*new_env;
+	int			len;
 
 	len = 0;
 	while (envp[len])
@@ -52,11 +52,10 @@ int				main(int ac, char **av, char **envp)
 	char		**cmd;
 	t_minienv	*mini_env;
 
-	if (ac != 1 && av[0])
-		ft_exit (NULL);
+	(ac != 1 && av[0]) ? ft_exit(NULL) : 0;
 	mini_env = init_env(envp);
 	ft_putstr("\033[1m\033[92mWelcome!\033[0m Make great code today\n");
-	while(42)
+	while (42)
 	{
 		ft_putstr(SHELLNAME);
 		get_next_line(0, &line);

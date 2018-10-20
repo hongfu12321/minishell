@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 17:27:43 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/19 15:15:24 by fhong            ###   ########.fr       */
+/*   Updated: 2018/10/19 16:45:47 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,7 @@ char	*parse_special_char(char *str, char **envp, char c)
 			ft_strdel(&tmp);
 		}
 	}
-//	ft_printf("new = %s\n", new);
 	return (new);
-//	(void)envp;
-//	(void)c;
-//	return (ft_strdup(str));
 }
 
 char	**parse_cmd(char **envp, char *str)
@@ -45,17 +41,15 @@ char	**parse_cmd(char **envp, char *str)
 	char	*tmp;
 	char	**parse;
 
-	parse = ft_strsplit(str, ' ');
-	if (*parse == NULL)
+	if ((parse = ft_strsplit(str, ' ')) && *parse == NULL)
 		return (NULL);
 	i = 0;
 	while (parse[++i])
 	{
 		tmp = parse[i];
 		len = ft_strlen(parse[i]);
-		if (parse[i][0] == '\"' && parse[i][len - 1] == '\"')
-			parse[i] = ft_strsub(parse[i], 1, len - 2);
-		if (parse[i][0] == '\'' && parse[i][len - 1] == '\'')
+		if ((parse[i][0] == '\"' && parse[i][len - 1] == '\"') ||
+			(parse[i][0] == '\'' && parse[i][len - 1] == '\''))
 		{
 			parse[i] = ft_strsub(parse[i], 1, len - 2);
 			ft_strdel(&tmp);

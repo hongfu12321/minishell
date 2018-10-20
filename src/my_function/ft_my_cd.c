@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 15:15:27 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/19 15:33:03 by fhong            ###   ########.fr       */
+/*   Updated: 2018/10/19 16:17:12 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 _Bool	get_oldpwd(char *cwd, t_minienv *envp)
 {
 	_Bool	flag;
-	char **tmp;
+	char	**tmp;
 
 	tmp = (char **)malloc(sizeof(char *) * 3);
 	tmp[0] = ft_strdup("setenv");
@@ -28,10 +28,10 @@ _Bool	get_oldpwd(char *cwd, t_minienv *envp)
 
 _Bool	ft_my_cd(char **para, t_minienv *envp)
 {
-	_Bool	flag;
-	char 	*path;
+	char	*path;
 	char	*cwd;
 	char	buff[PATH_MAX + 1];
+	_Bool	flag;
 
 	flag = 0;
 	if (para[1] && para[1][0] == '-')

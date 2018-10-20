@@ -6,36 +6,36 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/17 14:24:07 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/19 06:21:12 by fuhong           ###   ########.fr       */
+/*   Updated: 2018/10/19 17:07:37 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include		<pwd.h>
-# include		<dirent.h>
-# include		<sys/types.h>
-# include		<sys/wait.h>
-# include		"../libft/includes/libft.h"
+# include <pwd.h>
+# include <dirent.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include "../libft/includes/libft.h"
 
-# define		SHELLNAME	"\033[1m\033[34mFush%\033[0m "
-# define		FUNC_NUM	6
-# define		SET_ENV		0
-# define		CREATE_ENV	1
+# define SHELLNAME	"\033[1m\033[34mFush%\033[0m "
+# define FUNC_NUM	6
+# define SET_ENV	0
+# define CREATE_ENV	1
 
 typedef struct	s_minienv
 {
 	char		**env;
 }				t_minienv;
 
-typedef _Bool	(*myfunc)(char **para, t_minienv *envp);
+typedef _Bool	(*t_myfunc)(char **para, t_minienv *envp);
 
 typedef struct	s_cmd_dispatch
 {
 	char		*name;
 	char		*flag;
-	myfunc		fct;
+	t_myfunc	fct;
 }				t_cmd_dispatch;
 
 /*
@@ -60,8 +60,8 @@ _Bool			ft_my_unsetenv(char **parse, t_minienv *envp);
 */
 
 int				is_my_func(char **cmd);
-char			**get_path(char **envp);
 _Bool			run_system_func(char **cmd, t_minienv *envp);
+_Bool			run_builtin_func(char *cmd, t_minienv *envp, char **p, int ret);
 void			run_cmd(char *cmd, t_minienv *envp);
 
 /*
@@ -75,6 +75,7 @@ char			*get_env_var(char **envp, char *str);
 ** parse_cmd.c
 */
 
-char			**parse_cmd(char **envo, char *sr);
+char			*parse_special_char(char *str, char **envp, char c);
+char			**parse_cmd(char **envp, char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: fuhong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 21:02:31 by fuhong            #+#    #+#             */
-/*   Updated: 2018/10/19 15:17:30 by fhong            ###   ########.fr       */
+/*   Updated: 2018/10/19 16:41:36 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int		search_env_index(char **envp, char *str)
 {
-	int		i;
-	int		len;
+	int	i;
+	int	len;
 
 	if (*str == '\0')
 		return (-1);
@@ -26,7 +26,6 @@ int		search_env_index(char **envp, char *str)
 			return (i);
 	return (-1);
 }
-
 
 char	*get_env_var(char **envp, char *str)
 {
