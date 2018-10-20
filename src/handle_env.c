@@ -6,7 +6,7 @@
 /*   By: fuhong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 21:02:31 by fuhong            #+#    #+#             */
-/*   Updated: 2018/10/19 16:41:36 by fhong            ###   ########.fr       */
+/*   Updated: 2018/10/20 00:22:10 by fuhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		search_env_index(char **envp, char *str)
 	i = -1;
 	len = ft_strlen(str);
 	while (envp[++i])
-		if (ft_strncmp(envp[i], str, len) == 0)
+		if ((ft_strncmp(envp[i], str, len) == 0) && envp[i][len] == '=')
 			return (i);
 	return (-1);
 }
