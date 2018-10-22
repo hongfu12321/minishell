@@ -6,7 +6,11 @@
 /*   By: fuhong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 21:02:31 by fuhong            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2018/10/22 16:29:24 by fhong            ###   ########.fr       */
+=======
+/*   Updated: 2018/10/20 00:22:10 by fuhong           ###   ########.fr       */
+>>>>>>> bb080a4ff79b32b661cc333a4c7e407a0531732a
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +26,7 @@ int		search_env_index(char **envp, char *str)
 	i = -1;
 	len = ft_strlen(str);
 	while (envp[++i])
-		if (ft_strncmp(envp[i], str, len) == 0)
+		if ((ft_strncmp(envp[i], str, len) == 0) && envp[i][len] == '=')
 			return (i);
 	return (-1);
 }
@@ -41,5 +45,3 @@ char	*get_env_var(char **envp, char *str)
 	para = ft_strdup(&envp[i][len]);
 	return (para);
 }
-
-char	**i
