@@ -6,20 +6,24 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 15:15:27 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/19 16:17:12 by fhong            ###   ########.fr       */
+/*   Updated: 2018/10/22 16:27:25 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-_Bool	get_oldpwd(char *cwd, t_minienv *envp)
+_Bool	get_oldpwd(char *path_var, t_minienv *envp)
 {
 	_Bool	flag;
 	char	**tmp;
+	char	*cwd;
+	char	buff[PATH_MAX + 1];
 
+	if (!(cwd = getcwd(buff, PATH_MAX)))
+		return (0);
 	tmp = (char **)malloc(sizeof(char *) * 3);
 	tmp[0] = ft_strdup("setenv");
-	tmp[1] = ft_strdup("OLDPWD");
+	tmp[1] = ft_strdup(path_var);
 	tmp[2] = ft_strdup(cwd);
 	flag = ft_my_setenv(tmp, envp);
 	ft_tablefree(tmp);
@@ -29,8 +33,6 @@ _Bool	get_oldpwd(char *cwd, t_minienv *envp)
 _Bool	ft_my_cd(char **para, t_minienv *envp)
 {
 	char	*path;
-	char	*cwd;
-	char	buff[PATH_MAX + 1];
 	_Bool	flag;
 
 	flag = 0;
@@ -44,10 +46,9 @@ _Bool	ft_my_cd(char **para, t_minienv *envp)
 		ft_putstr("cd: permission denied\n");
 	else
 	{
-		if (!(cwd = getcwd(buff, PATH_MAX)))
-			return (0);
-		flag = get_oldpwd(cwd, envp);
+		flag = get_oldpwd("OLDPWD", envp);
 		chdir(path);
+		flag = get_oldpwd("PWD", envp);
 	}
 	ft_strdel(&path);
 	return ((flag == 1) ? 1 : 0);
