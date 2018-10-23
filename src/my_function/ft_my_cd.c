@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 15:15:27 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/22 16:27:25 by fhong            ###   ########.fr       */
+/*   Updated: 2018/10/22 17:19:09 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ _Bool	get_oldpwd(char *path_var, t_minienv *envp)
 
 	if (!(cwd = getcwd(buff, PATH_MAX)))
 		return (0);
-	tmp = (char **)malloc(sizeof(char *) * 3);
+	tmp = (char **)malloc(sizeof(char *) * 4);
 	tmp[0] = ft_strdup("setenv");
 	tmp[1] = ft_strdup(path_var);
 	tmp[2] = ft_strdup(cwd);
+	tmp[3] = NULL;
 	flag = ft_my_setenv(tmp, envp);
 	ft_tablefree(tmp);
 	return (flag);

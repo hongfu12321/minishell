@@ -6,7 +6,7 @@
 /*   By: fuhong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 21:21:32 by fuhong            #+#    #+#             */
-/*   Updated: 2018/10/19 16:41:08 by fhong            ###   ########.fr       */
+/*   Updated: 2018/10/22 17:48:09 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ char	**set_env(char **envp, char *new_var)
 	int		len;
 	char	**new_envp;
 
-	len = 0;
-	while (envp[len])
-		len++;
+	len = ft_tablesize(envp);
 	new_envp = (char **)malloc(sizeof(char *) * (len + 2));
 	new_envp[len + 1] = NULL;
 	i = -1;
@@ -43,10 +41,9 @@ _Bool	ft_my_setenv(char **parse, t_minienv *envp)
 	int		index;
 	char	*new_var;
 	char	*tmp_var;
-	char	**tmp_envp;
 
-	tmp_envp = envp->env;
-	if (parse[1] != NULL && parse[1][0] != '\0')
+	if (parse[1] != NULL && parse[1][0] != '\0' &&
+		!parse[3] && !strchr(parse[1], '='))
 	{
 		if ((new_var = ft_strjoin(parse[1], "=")) && parse[2] != NULL)
 		{
@@ -61,8 +58,9 @@ _Bool	ft_my_setenv(char **parse, t_minienv *envp)
 			ft_strdel(&tmp_var);
 		}
 		else
-			envp->env = set_env(tmp_envp, new_var);
+			envp->env = set_env(envp->env, new_var);
 		return (1);
 	}
+	ft_printf("Usage: setenv name [value]\n");
 	return (0);
 }
