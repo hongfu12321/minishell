@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 15:08:38 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/19 06:21:44 by fuhong           ###   ########.fr       */
+/*   Updated: 2018/10/22 20:59:42 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ _Bool			run_system_func(char **cmd, t_minienv *envp)
 	if (!(path_table = ft_strsplit(get_env_var(envp->env, "PATH"), ':')))
 		ft_exit("Can't find the path\n");
 	name = ft_strjoin("/", cmd[0]);
-	i = 0;
-	while (path_table[i++])
+	i = -1;
+	while (path_table[++i])
 	{
 		if (!path_table[i])
 			path = cmd[0];
@@ -45,8 +45,9 @@ _Bool			run_system_func(char **cmd, t_minienv *envp)
 		result = (execve(path, cmd, envp->env) == -1) ? 0 : 1;
 		ft_strdel(&path);
 	}
-	ft_putstr("Command not found\n");
-	free(path_table);
+	ft_printf("%s: Command not found\n", cmd[0]);
+	ft_strdel(&path);
+	ft_tablefree(path_table);
 	return (result);
 }
 

@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/17 15:01:58 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/22 16:32:58 by fhong            ###   ########.fr       */
+/*   Updated: 2018/10/22 21:00:05 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int				main(int ac, char **av, char **envp)
 	char		**cmd;
 	t_minienv	*mini_env;
 
-	(ac != 1 && av[0]) ? ft_exit(NULL) : 0;
+	(ac != 1 || av[1]) ? exit(-1) : 0;
 	mini_env = init_env(envp);
 	ft_putstr("\033[1m\033[92mWelcome!\033[0m Make great code today\n");
 	while (42)
@@ -66,10 +66,10 @@ int				main(int ac, char **av, char **envp)
 			envp = mini_env->env;
 			while (cmd[++i])
 				run_cmd(cmd[i], mini_env);
-			ft_strdel(&line);
 			ft_tablefree(cmd);
 		}
 		ft_strdel(&line);
 	}
 	free_env(mini_env);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/18 17:27:43 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/19 16:45:47 by fhong            ###   ########.fr       */
+/*   Updated: 2018/10/22 20:59:22 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	**parse_cmd(char **envp, char *str)
 	char	*tmp;
 	char	**parse;
 
-	if ((parse = ft_strsplit(str, ' ')) && *parse == NULL)
+	if ((parse = ft_strsplit_w(str)) && *parse == NULL)
 		return (NULL);
 	i = 0;
 	while (parse[++i])

@@ -6,7 +6,7 @@
 /*   By: fuhong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/19 05:15:08 by fuhong            #+#    #+#             */
-/*   Updated: 2018/10/22 17:40:54 by fhong            ###   ########.fr       */
+/*   Updated: 2018/10/22 20:08:28 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ _Bool	ft_my_unsetenv(char **parse, t_minienv *envp)
 		envp->env = new_envp;
 		return (1);
 	}
-	ft_printf("");
+	ft_putendl("Usage: unsetenv name");
 	return (0);
 }
