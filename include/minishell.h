@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/17 14:24:07 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/22 17:58:10 by fhong            ###   ########.fr       */
+/*   Updated: 2018/10/22 21:06:43 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,11 @@ typedef struct	s_minienv
 	char		**env;
 }				t_minienv;
 
-typedef _Bool	(*t_myfunc)(char **para, t_minienv *envp);
-
 typedef struct	s_cmd_dispatch
 {
 	char		*name;
 	char		*flag;
-	t_myfunc	fct;
+	_Bool		(*fct)(char **para, t_minienv *envp);
 }				t_cmd_dispatch;
 
 /*
