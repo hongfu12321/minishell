@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 19:04:33 by fhong             #+#    #+#             */
-/*   Updated: 2018/08/14 16:57:08 by fhong            ###   ########.fr       */
+/*   Updated: 2019/05/28 23:12:42 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ int		get_next_line(int fd, char **line)
 	if (fd < 0 || read(fd, buf[fd], 0) < 0 || line == NULL)
 		return (-1);
 	if (!buf[fd])
-		buf[fd] = ft_strnew(BUFF_SIZE);
+		buf[fd] = ft_strnew(GNL_BUFF_SIZE);
 	*line = ft_strdup(buf[fd]);
-	while (!ft_strchr(*line, '\n') && (ret = read(fd, buf[fd], BUFF_SIZE)))
+	while (!ft_strchr(*line, '\n') && (ret = read(fd, buf[fd], GNL_BUFF_SIZE)))
 	{
 		buf[fd][ret] = '\0';
 		tmp = *line;

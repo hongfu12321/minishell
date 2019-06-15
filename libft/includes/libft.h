@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 08:35:54 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/22 20:58:09 by fhong            ###   ########.fr       */
+/*   Updated: 2019/05/28 23:15:31 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
-char				**ft_strsplit_w(char const *s);
 char				*ft_strdup(char *str);
 char				*ft_strcpy(char *dest, const char *src);
 char				*ft_strncpy(char *dest, char *src, size_t n);
@@ -155,9 +154,6 @@ t_list				*ft_lstmap(t_list *lst,
 */
 
 size_t				ft_wstrlen(wchar_t *wstr);
-void				ft_putwchar(wchar_t c);
-void				ft_putwstr(wchar_t *wstr);
-void				ft_putnwstr(wchar_t *wstr, size_t n);
 
 /*
 ** intmax_t uintmax_t
@@ -172,6 +168,5 @@ void				ft_putnbr_uintmax_t_base(uintmax_t value, char *base);
 
 void				ft_exit(char *str);
 void				ft_tablefree(char **table);
-size_t				ft_tablesize(char **table);
 
 #endif
