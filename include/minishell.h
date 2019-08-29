@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/17 14:24:07 by fhong             #+#    #+#             */
-/*   Updated: 2018/10/22 21:06:43 by fhong            ###   ########.fr       */
+/*   Updated: 2019/08/28 22:27:57 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # include <pwd.h>
+# include <limits.h>
 # include <dirent.h>
 # include <sys/types.h>
 # include <sys/wait.h>

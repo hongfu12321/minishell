@@ -45,7 +45,7 @@ _Bool			run_system_func(char **cmd, t_minienv *envp)
 		result = (execve(path, cmd, envp->env) == -1) ? 0 : 1;
 		ft_strdel(&path);
 	}
-	ft_printf("%s: Command not found\n", cmd[0]);
+	ft_printf("Fush: Command not found: %s\n", cmd[0]);
 	ft_strdel(&path);
 	ft_tablefree(path_table);
 	return (result);

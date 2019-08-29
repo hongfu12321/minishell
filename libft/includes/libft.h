@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/03 08:35:54 by fhong             #+#    #+#             */
-/*   Updated: 2019/05/28 23:15:31 by fhong            ###   ########.fr       */
+/*   Created: 2019/08/28 22:23:02 by fhong             #+#    #+#             */
+/*   Updated: 2019/08/28 22:29:44 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
+char				**ft_strsplit_w(char const *s);
 char				*ft_strdup(char *str);
 char				*ft_strcpy(char *dest, const char *src);
 char				*ft_strncpy(char *dest, char *src, size_t n);
@@ -166,6 +167,7 @@ void				ft_putnbr_uintmax_t_base(uintmax_t value, char *base);
 ** other
 */
 
+int					ft_tablesize(char **table);
 void				ft_exit(char *str);
 void				ft_tablefree(char **table);
 
